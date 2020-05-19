@@ -18,7 +18,7 @@ public class Minesweeper implements ActionListener{
     JButton[][] buton = new JButton[20][20];
     int[][] counts = new int[20][20];
     Container grid = new Container();
-    final int mayýn = 10;
+    final int mayin = 10;
     public Minesweeper(){
         frame.setSize(1000,700);
         frame.setLayout(new BorderLayout());
@@ -36,7 +36,7 @@ public class Minesweeper implements ActionListener{
             
         }
         frame.add(grid,BorderLayout.CENTER);
-        mayÄ±nolustur();
+        mayinolustur();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         
@@ -46,7 +46,7 @@ public class Minesweeper implements ActionListener{
     new Minesweeper();
     
     }
-    public void mayýnolustur(){
+    public void mayinolustur(){
         ArrayList<Integer> liste = new ArrayList();
         for (int i = 0; i < counts.length; i++) {
             for (int j = 0; j < counts[0].length; j++) {
@@ -58,20 +58,20 @@ public class Minesweeper implements ActionListener{
         counts = new int [20][20];
         for (int i = 0; i < 30; i++) {
            int secim = (int)(Math.random() * liste.size());
-           counts[liste.get(secim)/100][liste.get(secim) % 100] = mayýn;
+           counts[liste.get(secim)/100][liste.get(secim) % 100] = mayin;
             liste.remove(secim);
         }
         for (int i = 0; i < counts.length; i++) {
             for (int j = 0; j < counts[0].length; j++) {
-                if(counts[i][j] != mayýn){
+                if(counts[i][j] != mayin){
                int komsu = 0;
-               if(i > 0 && j > 0 && counts[i-1][j-1] == mayýn){
+               if(i > 0 && j > 0 && counts[i-1][j-1] == mayin){
                    komsu++;
                }
-               if(j > 0 && counts[i][j-1] == mayýn){
+               if(j > 0 && counts[i][j-1] == mayin){
                    komsu++;
                }
-               if(i > counts.length - 1 && j < counts[0].length - 1 && counts[i+1][j+1]==mayýn){
+               if(i > counts.length - 1 && j < counts[0].length - 1 && counts[i+1][j+1]==mayin){
                    komsu++;
                    
                }
@@ -85,7 +85,7 @@ public class Minesweeper implements ActionListener{
         for (int i = 0; i < buton.length; i++) {
             for (int j = 0; j < buton[0].length; j++) {
                if(buton[i][j].isEnabled()){
-                   if(counts[i][j] != mayýn){
+                   if(counts[i][j] != mayin){
                        buton[i][j].setText(counts[i][j]+"");
                        buton[i][j].setEnabled(false);
                        
@@ -109,13 +109,13 @@ public class Minesweeper implements ActionListener{
                     buton[i][j].setText("");
                 }
             }
-            mayýnolustur();
+            mayinolustur();
         }else{
             
             for (int i = 0; i < buton.length; i++) {
                 for (int j = 0; j < buton.length; j++) {
                     if(event.getSource().equals(buton[i][j])){
-                        if(counts[i][j]==mayýn){
+                        if(counts[i][j]==mayin){
                            buton[i][j].setForeground(Color.red);
                            buton[i][j].setText("x");
                            oyunkaybet();
